@@ -12,8 +12,8 @@ def conectar():
         database = os.getenv("DB_DATABASE"),
     )
 
-coneçao = conectar()
-online = coneçao.is_connected()
+conexao = conectar()
+online = conexao.is_connected()
 if not online:
     print("Banco de Dados não conectou.")
     

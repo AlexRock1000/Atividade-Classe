@@ -23,11 +23,14 @@ def mostrar():
     for aluno in listar_alunos():
         aluno.mostrar()
 
-def mostrar_aluno():
+def mostrar_aluno_menu():
     id_aluno = int(input("Qual o ID do aluno? "))
-    for id_aluno in mostrar_aluno():
-        id_aluno.mostrar_id()
-        
+    aluno = mostrar_aluno(id_aluno)
+    if aluno:
+        aluno.mostrar_id()
+    else:
+        print("Aluno não encontrado.")
+
 while True:
     menu()
     opçao = input("Escolha uma opção: ")
@@ -35,5 +38,5 @@ while True:
         break
     elif opçao == "1": cadastrar()
     elif opçao == "2": mostrar()
-    elif opçao == "3": mostrar_aluno()
+    elif opçao == "3": mostrar_aluno_menu()
     else: print("Opção inválida.")

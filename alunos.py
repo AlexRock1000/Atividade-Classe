@@ -14,7 +14,7 @@ class Aluno:
     Média: {self.media}
     Cadastrado_em: {self.cadastrado_em}
     """)
-        
+
     def mostrar_id(self):
         print(f"""
     Código: {self.id_aluno}
@@ -52,16 +52,14 @@ def mostrar_aluno(id_aluno):
     cursor = conexao.cursor()
 
     sql = "SELECT id_aluno, nome, media FROM alunos WHERE id_aluno = %s"
-    cursor.execute(sql, (id_aluno))
+    cursor.execute(sql, (id_aluno,))
 
     # Buscar apenas um registro
     resultado = cursor.fetchone()
     conexao.close()
 
-    aluno = []
-    for id_aluno, nome, media in cursor.fetchall():
-        aluno_id = Aluno(id_aluno, nome, media)
-        aluno.append(aluno_id)
-
-    conexao.close()
-    return aluno
+    if resultado:
+        cod, nome, media = resultado
+        return Aluno(nome, media, cod)
+    
+    return None
